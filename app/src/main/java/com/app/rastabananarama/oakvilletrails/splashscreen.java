@@ -16,16 +16,15 @@ public class splashscreen extends Activity {
         setContentView(R.layout.splash);
 
 
-
-        Thread timerThread = new Thread(){
-            public void run(){
-                try{
+        Thread timerThread = new Thread() {
+            public void run() {
+                try {
                     sleep(3000);
-                }catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
-                }finally{
+                } finally {
 
-                    Intent intent = new Intent(splashscreen.this,mainMenu.class);
+                    Intent intent = new Intent(splashscreen.this, mainMenu.class);
                     startActivity(intent);
                 }
             }
@@ -39,6 +38,6 @@ public class splashscreen extends Activity {
         super.onPause();
         finish();
     }
-
 }
+
 
