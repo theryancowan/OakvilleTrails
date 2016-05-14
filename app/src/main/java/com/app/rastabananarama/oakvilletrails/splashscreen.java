@@ -25,7 +25,7 @@ public class splashscreen extends Activity {
                     e.printStackTrace();
                 }finally{
 
-                    Intent intent = new Intent(splashscreen.this,MapsActivity.class);
+                    Intent intent = new Intent(splashscreen.this,mainMenu.class);
                     startActivity(intent);
                 }
             }
