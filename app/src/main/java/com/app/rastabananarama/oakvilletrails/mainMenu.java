@@ -29,6 +29,10 @@ public class mainMenu extends Activity{
                 break;
             case R.id.imageView6:
                 break;
+            case R.id.imageView7:
+                intent = new Intent(mainMenu.this, MapsActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
