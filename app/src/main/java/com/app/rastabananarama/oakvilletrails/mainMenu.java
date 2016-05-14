@@ -12,4 +12,10 @@ public class mainMenu extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainmenu);
     }
+
+    /**
+     * Created by Ryan on 16-05-14.
+     */
+    public static class FindATrail {
+    }
 }
