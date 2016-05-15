@@ -1,14 +1,21 @@
 package com.app.rastabananarama.oakvilletrails;
 
+import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -28,13 +35,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Move the camera instantly to Sydney with a zoom of 15.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 10));
 
-        LatLng latlng= new LatLng(43.4695171,-79.70418);
-        mMap.setMyLocationEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 13));
-        mMap.addMarker(new MarkerOptions()
-                .title("Sheridan College")
-                .snippet("Go to school here.")
-                .position(latlng));
+        AssetManager am = getAssets();
+        PolylineOptions pl = new PolylineOptions();
+        try {
+            // OPENING THE REQUIRED TEXT FILE
+            BufferedReader reader = new BufferedReader(new InputStreamReader(am.open("line1")));
+            String myLine;
+            // NOW READING THEM LINE BY LINE UPTO THE END OF FILE
+            while ((myLine = reader.readLine()) != null) {
+                String lat = myLine.substring(0, myLine.indexOf(",")-1);
+                String lng = myLine.substring(myLine.indexOf(",")+1, myLine.length()-1);
+                LatLng point = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+                pl.add(point);
+                System.out.println("\n\n");
+            }
+            // CLOSE THE FILE AFTER WE HAVE FINISHED READING
+            reader.close();
+        } catch (IOException e) {
+            // INFORM USER OF ANY ERROR...
+            e.printStackTrace();
+        }
+
+        pl.width(5).color(Color.BLUE);
+        mMap.addPolyline(pl);
 
     }
 
