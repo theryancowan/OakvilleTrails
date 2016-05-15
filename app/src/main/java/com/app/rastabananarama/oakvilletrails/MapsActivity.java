@@ -44,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 pl.add(point);
                 if(a == 1){
                     SHERIDAN = point;
-                    mMap.addMarker(new MarkerOptions())
+                    mMap.addMarker(new MarkerOptions().position(SHERIDAN));
                 }
             }
             // CLOSE THE FILE AFTER WE HAVE FINISHED READING
