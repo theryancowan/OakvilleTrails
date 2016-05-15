@@ -22,6 +22,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
+
+        final LatLng SHERIDAN = new LatLng(43.4616431,-79.6891627);
+
+        // Move the camera instantly to Sydney with a zoom of 15.
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 10));
+
     }
 
 
@@ -38,16 +44,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sheridanC = new LatLng(43,-79);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sheridanC,16));
-
-        mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon))
-                .anchor(0.0f,1.0f)
-                .title("Sheridan College")
-                .position(sheridanC));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sheridanC));
     }
 }

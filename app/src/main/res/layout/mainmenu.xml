@@ -26,10 +26,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView4"
             android:src="@drawable/button1"
+            android:layout_marginTop="36dp"
             android:layout_below="@+id/imageView3"
-            android:layout_alignLeft="@+id/imageView5"
-            android:layout_alignStart="@+id/imageView5"
-            android:layout_marginTop="64dp" />
+            android:layout_alignLeft="@+id/imageView3"
+            android:layout_alignStart="@+id/imageView3" />
 
         <ImageView
             android:layout_width="wrap_content"
