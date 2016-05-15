@@ -24,6 +24,17 @@ public class mainMenu extends Activity{
         }
     }
 
+    public void onClickFindTrail(View v){
+        Intent intent;
+        switch (v.getId()){
+            case R.id.imageView4:
+                intent = new Intent(mainMenu.this,findTrail.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+
     public void clicked(View v){
         Intent intent;
         switch (v.getId()){
