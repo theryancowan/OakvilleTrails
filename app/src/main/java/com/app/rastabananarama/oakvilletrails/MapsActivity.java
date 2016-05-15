@@ -28,6 +28,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Move the camera instantly to Sydney with a zoom of 15.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 10));
 
+        LatLng latlng= new LatLng(43.4695171,-79.70418);
+        mMap.setMyLocationEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, 13));
+        mMap.addMarker(new MarkerOptions()
+                .title("Sheridan College")
+                .snippet("Go to school here.")
+                .position(latlng));
+
     }
 
 
