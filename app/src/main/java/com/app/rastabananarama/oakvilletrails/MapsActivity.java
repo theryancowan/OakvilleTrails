@@ -14,7 +14,6 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -26,28 +25,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-                .getMap();
+        mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
-
-        final LatLng SHERIDAN = new LatLng(43.4616431,-79.6891627);
-
-        // Move the camera instantly to Sydney with a zoom of 15.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 10));
+        LatLng SHERIDAN = new LatLng(43.4616431,-79.6891627);
 
         AssetManager am = getAssets();
         PolylineOptions pl = new PolylineOptions();
+        int a = 1;
         try {
             // OPENING THE REQUIRED TEXT FILE
-            BufferedReader reader = new BufferedReader(new InputStreamReader(am.open("line1")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(am.open("trail2")));
             String myLine;
-            // NOW READING THEM LINE BY LINE UPTO THE END OF FILE
+            // NOW READING THEM LINE BY LINE UP TO THE END OF FILE
             while ((myLine = reader.readLine()) != null) {
                 String lat = myLine.substring(0, myLine.indexOf(",")-1);
                 String lng = myLine.substring(myLine.indexOf(",")+1, myLine.length()-1);
                 LatLng point = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
                 pl.add(point);
-                System.out.println("\n\n");
+                if(a == 1){
+                    SHERIDAN = point;
+                    mMap.addMarker(new MarkerOptions())
+                }
             }
             // CLOSE THE FILE AFTER WE HAVE FINISHED READING
             reader.close();
@@ -59,6 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         pl.width(5).color(Color.BLUE);
         mMap.addPolyline(pl);
 
+        // Move the camera instantly to Sydney with a zoom of 15.
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 20));
     }
 
 
