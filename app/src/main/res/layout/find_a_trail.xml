@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/ratingBar"
                     android:isIndicator="true"
-                    android:rating="4"
+                    android:rating="2"
                     android:layout_below="@+id/textView2"
                     android:layout_alignLeft="@+id/textView"
                     android:layout_alignStart="@+id/textView" />
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="9.4"
+                    android:text="2.8"
                     android:id="@+id/textView2"
                     android:textSize="50dp"
                     android:layout_alignTop="@+id/textView"

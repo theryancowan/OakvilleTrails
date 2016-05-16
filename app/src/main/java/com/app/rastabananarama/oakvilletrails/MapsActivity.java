@@ -27,7 +27,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
-        LatLng SHERIDAN = new LatLng(43.4616431,-79.6891627);
+        LatLng SHERIDAN = new LatLng(43.4616431, -79.6891627);
+        LatLng SHERIDAN2 = new LatLng(43.47, -79.6891627);
+
 
         AssetManager am = getAssets();
         PolylineOptions pl = new PolylineOptions();
@@ -38,14 +40,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String myLine;
             // NOW READING THEM LINE BY LINE UP TO THE END OF FILE
             while ((myLine = reader.readLine()) != null) {
-                String lat = myLine.substring(0, myLine.indexOf(",")-1);
-                String lng = myLine.substring(myLine.indexOf(",")+1, myLine.length()-1);
+                String lat = myLine.substring(0, myLine.indexOf(",") - 1);
+                String lng = myLine.substring(myLine.indexOf(",") + 1, myLine.length() - 1);
                 LatLng point = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
                 pl.add(point);
-                if(a == 1){
-                    SHERIDAN = point;
-                    mMap.addMarker(new MarkerOptions().position(SHERIDAN));
-                }
+//                if(a == 1){
+//                    SHERIDAN = point;
+//                    mMap.addMarker(new MarkerOptions().position(SHERIDAN));
+//              }
             }
             // CLOSE THE FILE AFTER WE HAVE FINISHED READING
             reader.close();
@@ -58,7 +60,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addPolyline(pl);
 
         // Move the camera instantly to Sydney with a zoom of 15.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 20));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SHERIDAN, 13));
+        mMap.addMarker(new MarkerOptions().position(SHERIDAN).title("START TRAIL"));
+        mMap.addMarker(new MarkerOptions().position(SHERIDAN2).title("END"));
+
+
+
     }
 
 
